@@ -1,0 +1,27 @@
+RewriteEngine On
+# ตรวจสอบว่าผู้ใช้งานมี session หรือไม่
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/index\.html$
+RewriteCond %{REQUEST_URI} !^/login\.php$
+RewriteCond %{REQUEST_URI} !^/register\.php$
+RewriteCond %{REQUEST_URI} !^/img/.*$
+RewriteCond %{REQUEST_URI} !^/images/.*$
+RewriteCond %{REQUEST_URI} !^/uploads/.*$
+RewriteCond %{REQUEST_URI} !\.(?:jpg|jpeg|png|gif|svg|webp)$
+RewriteCond %{HTTP_COOKIE} !PHPSESSID
+RewriteRule ^ index.html [L]
+# ถ้ามี session แล้วและพยายามเข้า index.html ให้ redirect ไป dashboard.php
+RewriteCond %{HTTP_COOKIE} PHPSESSID
+RewriteCond %{REQUEST_URI} ^/index\.html$
+RewriteRule ^ dashboard.php [L,R]
+# ป้องกันการเข้าถึงไฟล์ .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+# ป้องกันการเข้าถึงไฟล์ config.php โดยตรง
+<Files config.php>
+    Order allow,deny
+    Deny from all
+</Files>

@@ -1,0 +1,249 @@
+/* Font settings */
+:root {
+    --font-thai: 'IBM Plex Sans Thai', 'Noto Sans Thai', sans-serif;
+    --font-english: 'IBM Plex Sans', 'Noto Sans', sans-serif;
+}
+
+body {
+    font-family: var(--font-thai);
+}
+
+/* Use English font for specific elements */
+input,
+.font-english {
+    font-family: var(--font-english);
+}
+
+/* Combined font stack for mixed content */
+.mixed-text {
+    font-family: var(--font-english), var(--font-thai);
+}
+
+/* Header styles */
+.header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Common button styles */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+
+/* Card styles */
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.admin-card {
+    transition: transform 0.2s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Use English font for specific elements */
+input,
+textarea,
+.font-english {
+    font-family: var(--font-english);
+}
+
+.demo-box {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+
+/* Demo styles */
+.demo-text-color {
+    color: blue;
+}
+
+.demo-background {
+    background-color: #ffeb3b;
+    padding: 10px;
+}
+
+.demo-border {
+    border: 2px solid red;
+    padding: 10px;
+}
+
+.demo-margin {
+    margin: 20px;
+    padding: 10px;
+    background-color: #e1f5fe;
+}
+
+.demo-padding {
+    padding: 20px;
+    background-color: #f0f4c3;
+}
+
+.demo-flexbox {
+    display: flex;
+    justify-content: space-around;
+    background-color: #e8eaf6;
+    padding: 10px;
+}
+
+.demo-flex-item {
+    padding: 10px;
+    background-color: #c5cae9;
+    margin: 5px;
+}
+
+.question-card {
+    transition: all 0.3s ease;
+}
+
+.question-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.lesson-card {
+    transition: all 0.3s ease;
+}
+
+.lesson-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.css-gradient {
+    background: linear-gradient(135deg, rgb(245, 185, 57) 0%, rgb(231, 63, 34) 100%);
+}
+
+.php-gradient {
+    background: linear-gradient(135deg, rgb(245, 185, 57) 0%, rgb(231, 63, 34) 100%);
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 35%;
+    overflow-y: auto;
+    background-color: white;
+    padding: 1.5rem;
+}
+
+.editor-section {
+    width: 65%;
+    border-left: 1px solid #e2e8f0;
+}
+
+/* Markdown content styles */
+.worksheet-description h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.worksheet-description h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.worksheet-description h3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.worksheet-description p {
+    margin-bottom: 1rem;
+}
+
+.worksheet-description pre {
+    background-color: #f7fafc;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.worksheet-description code {
+    font-family: monospace;
+    background-color: #f7fafc;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.worksheet-description ul,
+.worksheet-description ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.worksheet-description li {
+    margin-bottom: 0.25rem;
+}
+
+.rank-card {
+    transition: transform 0.2s ease;
+}
+
+.rank-card:hover {
+    transform: translateY(-2px);
+}
+
+.animate-shine {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
