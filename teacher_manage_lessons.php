@@ -14,7 +14,7 @@ $teacherCheckStmt->execute([$_SESSION['user_id']]);
 $teacher = $teacherCheckStmt->fetch();
 
 if (!$teacher) {
-    $_SESSION['error_message'] = "คุณไม่มีสิทธิ์เข้าถึงหน้านี้ เฉพาะอาจารย์เท่านั้น";
+    //$_SESSION['error_message'] = "คุณไม่มีสิทธิ์เข้าถึงหน้านี้ เฉพาะอาจารย์เท่านั้น";
     header('Location: dashboard.php');
     exit();
 }

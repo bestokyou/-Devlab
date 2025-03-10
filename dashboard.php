@@ -223,9 +223,20 @@ $teacherData = $teacherCheckStmt->fetch();
                     <p class="mb-4">สร้างและจัดการเนื้อหาสำหรับนักเรียนในฐานะอาจารย์</p>
                     <a href="manage_content.php"
                         class="inline-block bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        ไปที่หน้าอาจารย์
+                        ไปที่หน้าจัดการเนื้อหา
                     </a>
                 </div>
+                <div
+                    class="bg-gradient-to-br from-purple-500 to-cyan-600 rounded-lg shadow-lg p-6 text-white transform hover:scale-105 transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-3">จัดการแบบทดสอบ</h3>
+                    <p class="mb-4">จัดการคำถามแบบทดสอบก่อนเรียนและหลังเรียน</p>
+                    <a href="teacher_manage_questions.php"
+                        class="inline-block bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        ไปที่หน้าจัดการแบบทดสอบ
+                    </a>
+                </div>
+                
+                
                 <a href="all_students.php"
                     class="admin-card bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg">
                     <div class="bg-blue-100 p-3 rounded-full mb-4">
@@ -238,6 +249,7 @@ $teacherData = $teacherCheckStmt->fetch();
                     <h3 class="text-xl font-semibold mb-2">ติดตามความคืบหน้านักเรียน</h3>
                     <p class="text-gray-600">ดูความคืบหน้าและผลการเรียนของนักเรียน</p>
                 </a>
+                
                 <?php endif; ?>
 
                 <!-- Worksheet Access for regular users only (not admin or teacher) -->
