@@ -4,10 +4,7 @@ $db_host = 'localhost';
 $db_name = 'coding_tutorial';
 $db_user = 'root';
 $db_pass = '';
-//$db_host = 'localhost';
-//$db_name = 'u587676424_coding_tutoria';
-//$db_user = 'u587676424_coding_tutoria';
-//$db_pass = 'vP1jCC59:X2';
+
 try {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
