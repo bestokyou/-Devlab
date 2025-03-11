@@ -305,9 +305,9 @@ if ($submission['graded_at']) {
                     <!-- Tabs for output/preview -->
                     <div class="tab-container mt-4">
                         <div class="tab active" data-tab="output">ผลลัพธ์การทำงาน</div>
-                        <?php if ($submission['language'] == 'html'): ?>
-                        <div class="tab" data-tab="preview">แสดงผล HTML</div>
-                        <?php endif; ?>
+                        <?php if (in_array($submission['language'], ['html', 'css'])): ?>
+<div class="tab" data-tab="preview">แสดงผลตัวอย่าง</div>
+<?php endif; ?>
                     </div>
 
                     <!-- Output Tab -->
@@ -321,12 +321,12 @@ if ($submission['graded_at']) {
                     </div>
 
                     <!-- HTML Preview Tab (if applicable) -->
-                    <?php if ($submission['language'] == 'html'): ?>
-                    <div id="preview-tab" class="tab-content">
-                        <div class="output-header">HTML Preview</div>
-                        <iframe id="htmlPreview" class="w-full border-0 min-h-[400px]"></iframe>
-                    </div>
-                    <?php endif; ?>
+                    <?php if (in_array($submission['language'], ['html', 'css'])): ?>
+<div id="preview-tab" class="tab-content">
+    <div class="output-header">ตัวอย่างผลลัพธ์</div>
+    <iframe id="htmlPreview" class="w-full border-0 min-h-[400px]"></iframe>
+</div>
+<?php endif; ?>
 
                     <a href="do_worksheet.php?id=<?php echo $submission['worksheet_id']; ?>"
                         class="<?php echo $submission['status'] === 'graded' ? 'block' : 'hidden'; ?> mt-4 bg-blue-500 text-white py-2 rounded text-center hover:bg-blue-600 transition-colors">
@@ -340,37 +340,35 @@ if ($submission['graded_at']) {
     <script>
     // Render markdown description
     document.addEventListener('DOMContentLoaded', function() {
-        const descriptionElement = document.getElementById('description');
-        const markdownContent =
-            `<?php echo str_replace('"', '\\"', str_replace("\n", "\\n", addslashes($submission['description']))); ?>`;
-        descriptionElement.innerHTML = marked.parse(markdownContent);
+    const descriptionElement = document.getElementById('description');
+    const markdownContent =
+        `<?php echo str_replace('"', '\\"', str_replace("\n", "\\n", addslashes($submission['description']))); ?>`;
+    descriptionElement.innerHTML = marked.parse(markdownContent);
 
-        // Initialize tabs
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                // Update active tab
-                tabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-
-                // Update active content
-                const tabContents = document.querySelectorAll('.tab-content');
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(tabName + '-tab').classList.add('active');
+    // Initialize tabs
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabName = this.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
             });
+            document.getElementById(tabName + '-tab').classList.add('active');
         });
-
-        // Load code output
-        loadCodeOutput();
-
-        // Set up HTML preview if applicable
-        <?php if ($submission['language'] == 'html'): ?>
-        loadHtmlPreview();
-        <?php endif; ?>
     });
+
+    // Load code output
+    loadCodeOutput();
+
+    // Set up HTML preview if applicable
+    // Within the DOMContentLoaded event listener
+<?php if (in_array($submission['language'], ['html', 'css'])): ?>
+    loadHtmlPreview();
+<?php endif; ?>
+});
 
     // Function to copy code to clipboard
     function copyCode() {
@@ -412,19 +410,23 @@ if ($submission['graded_at']) {
             });
     }
 
-    <?php if ($submission['language'] == 'html'): ?>
-    // Function to load HTML preview
-    function loadHtmlPreview() {
-        const code =
-        `<?php echo str_replace('"', '\\"', str_replace("\n", "\\n", addslashes($submission['code']))); ?>`;
-        const iframe = document.getElementById('htmlPreview');
-
-        const preview = iframe.contentDocument || iframe.contentWindow.document;
-        preview.open();
-        preview.write(code);
-        preview.close();
-    }
-    <?php endif; ?>
+    <?php if (in_array($submission['language'], ['html', 'css'])): ?>
+// Function to load HTML or CSS preview
+function loadHtmlPreview() {
+    // Get the escaped HTML from code-display
+    const escapedCode = document.getElementById('codeDisplay').innerHTML;
+    // Create a temporary element to decode the HTML entities
+    const tempElement = document.createElement('textarea');
+    tempElement.innerHTML = escapedCode;
+    const unescapedCode = tempElement.value;
+    
+    const iframe = document.getElementById('htmlPreview');
+    const preview = iframe.contentDocument || iframe.contentWindow.document;
+    preview.open();
+    preview.write(unescapedCode);
+    preview.close();
+}
+<?php endif; ?>
     </script>
 </body>
 
